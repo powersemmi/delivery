@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Расчёт минимальной стоимости грузоперевозки</title>
+</head>
+<body>
+<main>
+    <form action="/api/v1/delivery" method="get">
+        <p><b>Введите данные о вашей посылке</b></p>
+        <p>Вес: <input type="number" name="weight" placeholder="Вес" value="10"></p>
+        <p>Объём: <input type="number" name="volume" placeholder="Объём" value="0,5"></p>
+        <p>Выберете город отправки: <select>
+            {% for item in out %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% else %}
+                no true items
+            {% endfor %}
+        </select></p>
+        <p>Выберете город получения: <select>
+            {% for item in in_ %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% else %}
+                no true items
+            {% endfor %}
+        </select></p>
+    <p><input type="submit" value="Расчитать"></p>
+    </form>
+</main>
+</body>
+</html>

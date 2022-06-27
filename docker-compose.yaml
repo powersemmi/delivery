@@ -1,0 +1,16 @@
+version: "3.8"
+
+networks:
+  shared: { }
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: delivery
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks: [ shared ]
+    ports:
+      - "5432:5432"

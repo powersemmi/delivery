@@ -1,0 +1,9 @@
+[tool.black]
+line-length = 84
+
+[tool.isort]
+profile = "black"
+line_length = 84
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
