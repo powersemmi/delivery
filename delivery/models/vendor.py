@@ -7,10 +7,10 @@ class VendorInfo(BaseModel):
     name: str
     in_: AvailableCitiesEnum
     out: AvailableCitiesEnum
-    price: int
+    price: float
     min_price: int
-    weight: float
-    volume: float
+    weight: float | None
+    volume: float | None
     delivery_date: int
     less: bool
     weight_multiplier: bool

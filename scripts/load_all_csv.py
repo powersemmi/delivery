@@ -26,6 +26,7 @@ def parse_data(path: Path) -> list[list[VendorInfo]]:
         df[
             df["in"].map(AvailableCitiesEnum.has_value)
             & df["out"].map(AvailableCitiesEnum.has_value)
+            & df["date"].notna()
         ]
         .reset_index()
         .drop(columns=["index"])
@@ -44,8 +45,8 @@ def parse_data(path: Path) -> list[list[VendorInfo]]:
         logger.debug(f"{col_name=}")
         weight, volume = col_name[2:].replace(",", ".").split("/")
 
-        weight = float(weight) if weight != "none" else None
-        volume = float(volume) if volume != "none" else None
+        weight = float(weight) if weight != "null" else None
+        volume = float(volume) if volume != "null" else None
 
         new_df = pd.DataFrame()
         new_df["name"] = comp

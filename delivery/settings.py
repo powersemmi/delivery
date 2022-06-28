@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     HOST: str = "0.0.0.0"
     PORT: int = 8080
     DEBUG: bool = False
+    LOGGING_CONFIG_FILE: str = "./logging.yaml"
 
     # DB
     DB_URL: AsyncPostgresDsn

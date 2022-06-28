@@ -1,6 +1,11 @@
 import logging
+import logging.config
+import os.path
 
 import click
+import yaml
+
+from delivery.settings import settings
 
 logger = logging.getLogger(__name__)
 
@@ -14,8 +19,6 @@ def cls():
 def run_server():
     import uvicorn
 
-    from delivery.settings import settings
-
     logger.info("Application start")
 
     uvicorn.run(
@@ -26,6 +29,7 @@ def run_server():
         port=settings.PORT,
         # log_config=None,
         proxy_headers=False,
+        log_config=_config,
     )
 
 
@@ -40,6 +44,11 @@ def load():
 
 
 if __name__ == "__main__":
+    with open(os.path.normpath(settings.LOGGING_CONFIG_FILE), "r") as f:
+        _config = yaml.load(f, Loader=yaml.FullLoader)
+
+    logging.config.dictConfig(_config)
+
     cls.add_command(run_server)
     cls.add_command(load)
     cls.main()

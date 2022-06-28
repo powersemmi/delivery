@@ -12,15 +12,15 @@
     <form action="/api/v1/delivery" method="get">
         <p><b>Введите данные о вашей посылке</b></p>
         <p>Вес: <input type="number" name="weight" placeholder="Вес" value="10"></p>
-        <p>Объём: <input type="number" name="volume" placeholder="Объём" value="0,5"></p>
-        <p>Выберете город отправки: <select>
+        <p>Объём: <input type="number" name="volume" placeholder="Объём" value="0,05" min="0.01" step="0.01"></p>
+        <p>Выберете город отправки: <select name="out">
             {% for item in out %}
                 <option value="{{ item }}">{{ item }}</option>
             {% else %}
                 no true items
             {% endfor %}
         </select></p>
-        <p>Выберете город получения: <select>
+        <p>Выберете город получения: <select name="in_">
             {% for item in in_ %}
                 <option value="{{ item }}">{{ item }}</option>
             {% else %}
